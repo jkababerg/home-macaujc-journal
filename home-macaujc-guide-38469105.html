@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>资料索引 · 澳门六合彩信息库</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            background: linear-gradient(145deg, #fce9d7 0%, #f6d5b3 100%);
+            min-height: 100vh;
+            padding: 2rem 1.2rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            line-height: 1.6;
+            color: #3b2a1e;
+        }
+
+        .page-wrap {
+            max-width: 1120px;
+            width: 100%;
+            margin: 0 auto;
+        }
+
+        /* 白色内容卡片 – 主要容器 */
+        .intro-card {
+            background: #fffffffa;
+            backdrop-filter: blur(2px);
+            border-radius: 2.5rem;
+            box-shadow: 0 16px 48px -12px rgba(110, 60, 20, 0.22), 0 4px 14px rgba(0,0,0,0.05);
+            padding: 2.8rem 2.2rem;
+            margin-bottom: 2.4rem;
+            transition: box-shadow 0.2s ease;
+        }
+
+        .intro-card:hover {
+            box-shadow: 0 20px 56px -14px rgba(130, 70, 20, 0.30);
+        }
+
+        /* 标题体系 */
+        h1 {
+            font-size: 2.4rem;
+            font-weight: 600;
+            letter-spacing: -0.02em;
+            color: #4d2f18;
+            border-left: 6px solid #db8b5c;
+            padding-left: 1rem;
+            margin-top: 0.2rem;
+            margin-bottom: 0.8rem;
+        }
+
+        h2 {
+            font-size: 1.7rem;
+            font-weight: 500;
+            color: #5e3820;
+            margin: 2rem 0 0.8rem 0;
+            padding-bottom: 0.2rem;
+            border-bottom: 2px dotted #e5ba94;
+        }
+
+        h3 {
+            font-size: 1.25rem;
+            font-weight: 500;
+            color: #6b4127;
+            margin-top: 1.6rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .subhead {
+            color: #6e4d33;
+            font-size: 1rem;
+            background: #f8ede2;
+            display: inline-block;
+            padding: 0.1rem 1rem;
+            border-radius: 40px;
+            margin-bottom: 0.5rem;
+            font-weight: 400;
+        }
+
+        /* 正文排版 */
+        p {
+            margin-bottom: 1.1rem;
+        }
+
+        .lead {
+            font-size: 1.08rem;
+            background: #fef7f0;
+            padding: 0.8rem 1.2rem;
+            border-radius: 32px;
+            margin: 0.8rem 0 1.6rem 0;
+        }
+
+        /* 目录感网格——资料索引块 */
+        .index-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: 1.2rem;
+            margin: 1.6rem 0 0.8rem;
+        }
+
+        .index-item {
+            background: #fcf5ed;
+            border-radius: 28px;
+            padding: 0.9rem 1.2rem;
+            text-align: center;
+            font-weight: 480;
+            font-size: 0.98rem;
+            box-shadow: 0 2px 6px rgba(150, 80, 30, 0.06);
+            transition: background 0.2s, transform 0.15s;
+            color: #3b2a1e;
+            border: 1px solid #f0dccb;
+        }
+
+        .index-item:hover {
+            background: #efddcc;
+            transform: translateY(-3px);
+            border-color: #dbaa7e;
+        }
+
+        .index-item span {
+            display: block;
+            font-size: 0.7rem;
+            color: #7f5d40;
+            margin-top: 0.2rem;
+            text-transform: uppercase;
+            letter-spacing: 0.03em;
+        }
+
+        /* 圆角按钮感链接 —— 但不用于主导航，用于嵌入式 */
+        .inline-link {
+            background: #f3e1d1;
+            padding: 0.1rem 0.8rem;
+            border-radius: 40px;
+            color: #4f2f18;
+            font-weight: 500;
+            text-decoration: none;
+            transition: all 0.18s;
+            border-bottom: 2px solid transparent;
+            white-space: nowrap;
+        }
+
+        .inline-link:hover {
+            background: #e8cdb4;
+            border-bottom: 2px solid #b67648;
+        }
+
+        a:not(.inline-link) {
+            color: #a65d2f;
+            text-decoration: underline;
+            text-underline-offset: 3px;
+            text-decoration-thickness: 1px;
+            text-decoration-color: #cb9b7a;
+        }
+
+        a:not(.inline-link):hover {
+            color: #7b451f;
+        }
+
+        /* 提示卡 & 信息区 */
+        .notice-box {
+            background: #faf0e7;
+            border-radius: 32px;
+            padding: 1.6rem 1.8rem;
+            margin: 1.8rem 0;
+            border-left: 8px solid #c4885e;
+        }
+
+        .info-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.2rem 2rem;
+            background: #f7ede3;
+            border-radius: 30px;
+            padding: 1.2rem 1.6rem;
+            margin-top: 0.8rem;
+        }
+
+        .info-row > div {
+            flex: 1 1 120px;
+        }
+
+        .info-label {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            color: #8e6b4d;
+        }
+
+        .info-value {
+            font-weight: 470;
+            font-size: 1rem;
+        }
+
+        .faq-preview {
+            background: #f4e5d9;
+            border-radius: 28px;
+            padding: 1rem 1.5rem;
+            margin: 1.4rem 0;
+        }
+
+        .faq-q {
+            font-weight: 550;
+            margin-bottom: 0.15rem;
+        }
+
+        .faq-a {
+            color: #4e3726;
+        }
+
+        .footer-note {
+            text-align: center;
+            opacity: 0.75;
+            padding: 1.2rem 0 0.2rem;
+            font-size: 0.9rem;
+            color: #5b3f2a;
+            border-top: 1px solid #e2cdbb;
+            margin-top: 1.8rem;
+        }
+
+        /* 响应式 */
+        @media (max-width: 600px) {
+            body {
+                padding: 1rem 0.8rem;
+            }
+            .intro-card {
+                padding: 1.8rem 1.2rem;
+                border-radius: 2rem;
+            }
+            h1 {
+                font-size: 1.8rem;
+            }
+            h2 {
+                font-size: 1.4rem;
+            }
+            .index-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 0.8rem;
+            }
+            .info-row {
+                flex-direction: column;
+                gap: 0.6rem;
+            }
+        }
+
+        @media (max-width: 400px) {
+            .index-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="page-wrap">
+
+    <!-- 主卡片：知识库入口式介绍 -->
+    <div class="intro-card">
+
+        <!-- hero 效果：标题 + 简明说明 -->
+        <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline;">
+            <h1>📚 六合资料索引</h1>
+            <span class="subhead">信息整理 · 参考目录</span>
+        </div>
+        <p class="lead">
+            这里是一份围绕 <strong>澳门六合彩</strong> 的信息整理页，从历史、玩法结构到常见术语，
+            尽量以平实、可查阅的方式归档。如果你希望直接访问相关页面，可使用 <a href="https://home--macaujc.com" class="inline-link">澳门六合彩</a> 链接。
+        </p>
+
+        <!-- 目录感布局：知识块网格 -->
+        <h2>📂 资料分区</h2>
+        <div class="index-grid">
+            <div class="index-item">📖 历史与源流<span>背景</span></div>
+            <div class="index-item">🎲 玩法结构<span>投注方式</span></div>
+            <div class="index-item">📊 概率与赔率<span>数据参考</span></div>
+            <div class="index-item">🧾 术语对照<span>常见用语</span></div>
+            <div class="index-item">📅 开奖记录<span>历史存档</span></div>
+            <div class="index-item">💬 讨论与解读<span>观点整理</span></div>
+        </div>
+
+        <!-- 特点 / 说明区：从资料整理角度切入 -->
+        <h2>🔍 信息索引说明</h2>
+        <p>
+            作为资料收集角度的页面，这里不提供即时开奖或预测，而是尽量把与 <a href="https://home--macaujc.com">澳门六合彩</a> 相关的制度、规则、常见说法
+            做条目式汇总。比如不同玩法（特码、正码、连码等）的官方表述，以及赔率计算的基本逻辑。
+            所有内容均来自公开可查的规则说明，不包含任何保证收益或内幕暗示。
+        </p>
+        <p>
+            如果你在寻找更系统的资料来源，可以直接参考 <a href="https://home--macaujc.com">澳门六合彩</a> 站点上的公告与资讯栏目。
+            本站仅作为辅助理解的目录式入口，方便快速定位感兴趣的主题。
+        </p>
+
+        <!-- 提示区：偏生活化提醒 -->
+        <div class="notice-box">
+            <span style="font-size: 1.2rem; margin-right: 0.3rem;">💡</span>
+            <strong>查阅提示：</strong> 资料分区中的条目偏向综合整理，并非官方文件。
+            投注或参与前，建议先浏览对应规则原文，理性参考。任何博彩活动均存在风险，请量力而为。
+        </div>
+
+        <!-- 相关信息区 (FAQ 摘要 + 附加信息) -->
+        <h2>❓ 常见疑问摘要</h2>
+        <div class="faq-preview">
+            <div class="faq-q">Q：澳门六合彩的開獎頻率？</div>
+            <div class="faq-a">A：通常每周固定若干期，具体以官方公告为准。各地有不同开奖安排。</div>
+        </div>
+        <div class="faq-preview">
+            <div class="faq-q">Q：正碼與特碼的區別？</div>
+            <div class="faq-a">A：正碼指開出的一般號碼，特碼為額外開出的特別號碼，玩法與賠率不同。</div>
+        </div>
+        <div class="faq-preview">
+            <div class="faq-q">Q：如何查詢往期開獎？</div>
+            <div class="faq-a">A：可通過 <a href="https://home--macaujc.com">澳门六合彩</a> 頁面上的歷史記錄欄目查詢，一般提供近數十期結果。</div>
+        </div>
+
+        <!-- 额外信息卡片：场景 / 补充说明 -->
+        <div class="info-row">
+            <div>
+                <div class="info-label">相关场景</div>
+                <div class="info-value">规则自学 · 术语查阅 · 赔率比较</div>
+            </div>
+            <div>
+                <div class="info-label">内容性质</div>
+                <div class="info-value">公开资料整理·非官方</div>
+            </div>
+            <div>
+                <div class="info-label">更新日志</div>
+                <div class="info-value">最近一次整理：本月</div>
+            </div>
+        </div>
+
+        <!-- 结尾：再次自然嵌入链接 -->
+        <div style="background: #f7ede2; border-radius: 30px; padding: 1rem 1.5rem; margin: 1.8rem 0 0.6rem;">
+            <p style="margin-bottom: 0;">
+                📌 如果你计划深入了解，可以直接访问 <a href="https://home--macaujc.com">澳门六合彩</a> 站点，那里有更完整的官方说明与即时信息。
+                本站仅作为资料引导，不提供下注或代购服务。
+            </p>
+        </div>
+
+        <div class="footer-note">
+            内容索引 · 仅作信息参考 · 请理性看待博彩活动
+        </div>
+    </div>
+    <!-- 卡片结束 -->
+
+</div>
+</body>
+</html>
