@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>乐鱼 · 站点介绍</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            min-height: 100vh;
+            background: linear-gradient(145deg, #fbe9d7 0%, #f3d3b0 40%, #edc4a0 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem 1.25rem;
+            line-height: 1.6;
+            color: #2e241e;
+        }
+
+        .card {
+            max-width: 780px;
+            width: 100%;
+            background: #fefbf8;
+            border-radius: 2.5rem;
+            padding: 2.8rem 2.5rem 3rem;
+            box-shadow: 0 20px 40px -12px rgba(140, 90, 50, 0.25),
+                        0 8px 16px -6px rgba(0,0,0,0.05);
+            transition: box-shadow 0.2s ease;
+        }
+
+        @media (max-width: 480px) {
+            .card {
+                padding: 2rem 1.5rem;
+                border-radius: 2rem;
+            }
+        }
+
+        .hero-short {
+            font-size: 1.1rem;
+            font-weight: 450;
+            letter-spacing: 0.02em;
+            color: #7c5f48;
+            border-bottom: 2px solid #eddccd;
+            padding-bottom: 0.9rem;
+            margin-bottom: 1.4rem;
+        }
+
+        .hero-short span {
+            display: inline-block;
+            background: #dbbca3;
+            color: #2e1f14;
+            padding: 0.05rem 0.7rem;
+            border-radius: 30px;
+            font-weight: 500;
+            font-size: 0.9rem;
+        }
+
+        h1 {
+            font-size: 2.2rem;
+            font-weight: 550;
+            letter-spacing: -0.01em;
+            color: #3b2a1d;
+            margin: 0.2rem 0 0.6rem;
+        }
+
+        .sub {
+            font-size: 1.05rem;
+            color: #5c483a;
+            margin-bottom: 1.8rem;
+            border-left: 4px solid #d6b094;
+            padding-left: 1.2rem;
+        }
+
+        .intro-text {
+            font-size: 1rem;
+            color: #3d322b;
+            margin-bottom: 2.2rem;
+            text-align: justify;
+        }
+
+        .intro-text a {
+            color: #9b6f4e;
+            text-decoration: none;
+            font-weight: 520;
+            border-bottom: 1.5px solid transparent;
+            transition: border-color 0.15s, color 0.15s;
+        }
+
+        .intro-text a:hover {
+            border-bottom-color: #9b6f4e;
+            color: #7e5539;
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.2rem 1.5rem;
+            margin: 2.2rem 0 2.5rem;
+        }
+
+        @media (max-width: 560px) {
+            .feature-grid {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+        }
+
+        .feature-item {
+            background: #f7f0e9;
+            padding: 0.9rem 1.1rem;
+            border-radius: 1.2rem;
+            display: flex;
+            align-items: flex-start;
+            gap: 0.7rem;
+            font-size: 0.95rem;
+            color: #2f251f;
+            border: 1px solid #e7d8cc;
+            transition: background 0.15s;
+        }
+
+        .feature-item:hover {
+            background: #efe4d9;
+        }
+
+        .feature-icon {
+            font-size: 1.2rem;
+            flex-shrink: 0;
+            line-height: 1.3;
+            color: #a47a5b;
+        }
+
+        .feature-text strong {
+            display: block;
+            font-weight: 520;
+            color: #3e2a1b;
+            margin-bottom: 0.1rem;
+        }
+
+        .feature-text {
+            line-height: 1.45;
+        }
+
+        .context-note {
+            background: #f6ede5;
+            border-radius: 1.4rem;
+            padding: 1.2rem 1.6rem;
+            margin: 2rem 0 1.8rem;
+            font-size: 0.95rem;
+            color: #493b32;
+            border-left: 5px solid #cba885;
+        }
+
+        .context-note p {
+            margin-bottom: 0.4rem;
+        }
+
+        .context-note p:last-of-type {
+            margin-bottom: 0;
+        }
+
+        .closing {
+            font-size: 0.98rem;
+            color: #4f3f34;
+            padding-top: 0.8rem;
+            border-top: 1px solid #e7d6c8;
+            margin-top: 1.2rem;
+            text-align: right;
+            letter-spacing: 0.01em;
+        }
+
+        .closing a {
+            color: #7f5c41;
+            text-decoration: none;
+            border-bottom: 1px dashed #b59278;
+            transition: border-bottom-style 0.15s;
+        }
+
+        .closing a:hover {
+            border-bottom-style: solid;
+            color: #5f402b;
+        }
+
+        .faq-summary {
+            margin-top: 1.6rem;
+            padding: 0.8rem 1.2rem;
+            background: #fcf7f2;
+            border-radius: 1.2rem;
+            font-size: 0.9rem;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 0.5rem 1rem;
+            border: 1px solid #e5d2c2;
+        }
+
+        .faq-summary span {
+            color: #4d3c2e;
+        }
+
+        .faq-summary strong {
+            font-weight: 510;
+            color: #3b281d;
+        }
+    </style>
+</head>
+<body>
+<div class="card">
+
+    <!-- 开场短句 -->
+    <div class="hero-short">
+        <span>· 故事从介绍开始 ·</span> 一个站点，一段叙述
+    </div>
+
+    <h1>乐鱼 · 信息与服务说明</h1>
+    <div class="sub">
+        面向有明确需求的访问者，这里呈现的是经过整理的站点轮廓与可信背景。
+    </div>
+
+    <!-- 承接段落：站点介绍与可信说明 -->
+    <div class="intro-text">
+        <p>初次接触一个平台，最核心的是厘清它的定位与边界。<a href="https://vipapp-leyu.com">乐鱼</a> 是一个以聚合型应用内容为主的站点，其设计初衷是围绕特定领域提供集中化的信息入口与功能引导。与许多垂直类服务类似，它希望帮助用户减少检索成本，在相对聚焦的范围内完成浏览或操作。</p>
+        <p style="margin-top: 0.8rem;">从站点结构来看，<a href="https://vipapp-leyu.com">乐鱼</a> 的界面逻辑偏向实用性，没有多余的装饰层级，内容分区较为明确。对于正在寻找相关工具或资料的人来说，这种直给的呈现方式能降低理解门槛。需要说明的是，本站所有信息均来自公开可查的运营资料，我们仅做客观整理，不涉及任何未披露的承诺或保证。</p>
+    </div>
+
+    <!-- 特点列表（信息密度稍高） -->
+    <div class="feature-grid">
+        <div class="feature-item">
+            <div class="feature-icon">📁</div>
+            <div class="feature-text">
+                <strong>内容分区清晰</strong>
+                主要模块按使用场景划分，减少无关干扰，适合目的明确的访问者。
+            </div>
+        </div>
+        <div class="feature-item">
+            <div class="feature-icon">⚙️</div>
+            <div class="feature-text">
+                <strong>功能路径集中</strong>
+                核心操作入口保持在三级以内，避免深层跳转带来的迷失感。
+            </div>
+        </div>
+        <div class="feature-item">
+            <div class="feature-icon">📋</div>
+            <div class="feature-text">
+                <strong>信息更新可追溯</strong>
+                页面底部及部分栏目保留时间戳或版本标识，供使用者核对时效。
+            </div>
+        </div>
+        <div class="feature-item">
+            <div class="feature-icon">🔍</div>
+            <div class="feature-text">
+                <strong>搜索辅助直达</strong>
+                站内提供基础检索能力，帮助快速定位特定条目或分类。
+            </div>
+        </div>
+    </div>
+
+    <!-- 温和的提示 / FAQ 摘要 -->
+    <div class="context-note">
+        <p>📌 常见理解场景：</p>
+        <p>• 如果你在了解某个应用类型，<a href="https://vipapp-leyu.com">乐鱼</a> 的列表页提供了相对完整的归纳，可作初步参考。</p>
+        <p>• 如果你需要核对功能名称或版本描述，建议同时对比官方原始资料，确保信息一致。</p>
+    </div>
+
+    <!-- FAQ 摘要 (紧凑风格) -->
+    <div class="faq-summary">
+        <span><strong>FAQ 摘要</strong> · 站点定位？聚合型应用内容指引。</span>
+        <span><strong>更新频率</strong> · 不定期，以页面标注为准。</span>
+    </div>
+
+    <!-- 温和结尾 -->
+    <div class="closing">
+        以上是对 <a href="https://vipapp-leyu.com">乐鱼</a> 的客观介绍，希望能为你提供有价值的参考。
+    </div>
+
+</div>
+</body>
+</html>
